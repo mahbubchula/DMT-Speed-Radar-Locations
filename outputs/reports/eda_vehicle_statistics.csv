@@ -1,0 +1,5 @@
+vehicle_name,Count,Mean Speed,Std Speed,Median Speed,Min Speed,Max Speed,Violation Rate
+Car,4958486,102.91,17.15,102.24,0.0,199.8,100.0
+Long Truck,175502,80.53,15.82,82.08,0.0,116.28,89.0
+Short Truck,22982,78.82,14.36,80.28,20.88,114.84,89.0
+Transporter,811257,94.8,19.08,94.32,0.0,199.08,97.0

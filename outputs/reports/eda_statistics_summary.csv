@@ -1,0 +1,15 @@
+Metric,Value
+Total Records,"5,968,227"
+Date Range,2021-02-14 to 2021-11-13
+Number of Locations,14
+Number of Vehicle Types,4
+Mean Speed (km/h),101.05
+Median Speed (km/h),100.80
+Std Dev Speed (km/h),18.02
+Min Speed (km/h),0.00
+Max Speed (km/h),199.80
+Speed Limit (km/h),60
+Overall Violation Rate (%),99.02
+Peak Hour Violation Rate (%),99.25
+Weekend Violation Rate (%),98.94
+Weekday Violation Rate (%),99.04
