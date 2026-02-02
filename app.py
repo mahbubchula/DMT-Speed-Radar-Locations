@@ -231,9 +231,9 @@ def main():
             st.caption("Full interactive mode requires local deployment with data files.")
 
     # Main content with tabs
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "📊 Overview", "🔬 EDA Figures", "🤖 ML Results",
-        "🔍 Explainability", "📥 Export"
+        "🔍 Explainability", "💬 AI Chat", "📥 Export"
     ])
 
     # ==========================================================================
@@ -405,9 +405,129 @@ def main():
                             use_container_width=True)
 
     # ==========================================================================
-    # TAB 5: EXPORT
+    # TAB 5: AI CHAT
     # ==========================================================================
     with tab5:
+        st.subheader("💬 AI-Powered Traffic Analysis Chat")
+
+        # Get API key from Streamlit secrets or environment
+        groq_api_key = None
+        try:
+            groq_api_key = st.secrets.get("GROQ_API_KEY", None)
+        except:
+            pass
+
+        if not groq_api_key:
+            import os
+            groq_api_key = os.environ.get("GROQ_API_KEY", None)
+
+        if groq_api_key:
+            try:
+                from groq import Groq
+
+                # Initialize chat history
+                if "messages" not in st.session_state:
+                    st.session_state.messages = []
+
+                # Create context from statistics
+                context = ""
+                if 'summary' in eda_stats:
+                    summary_dict = dict(zip(eda_stats['summary']['Metric'], eda_stats['summary']['Value']))
+                    context = f"""
+Traffic Data Analysis Context:
+- Total Records: {summary_dict.get('Total Records', 'N/A')}
+- Date Range: {summary_dict.get('Date Range', 'N/A')}
+- Number of Locations: {summary_dict.get('Number of Locations', 'N/A')}
+- Mean Speed: {summary_dict.get('Mean Speed (km/h)', 'N/A')} km/h
+- Speed Limit: 60 km/h
+- Overall Violation Rate: {summary_dict.get('Overall Violation Rate (%)', 'N/A')}%
+- Peak Hour Violation Rate: {summary_dict.get('Peak Hour Violation Rate (%)', 'N/A')}%
+- Weekend Violation Rate: {summary_dict.get('Weekend Violation Rate (%)', 'N/A')}%
+- Weekday Violation Rate: {summary_dict.get('Weekday Violation Rate (%)', 'N/A')}%
+
+Best ML Model: Neural Network (F1 = 0.968)
+Key finding: 99% of vehicles exceed the 60 km/h speed limit.
+"""
+
+                # Display chat history
+                for message in st.session_state.messages:
+                    with st.chat_message(message["role"]):
+                        st.markdown(message["content"])
+
+                # Chat input
+                if prompt := st.chat_input("Ask about traffic violations, patterns, or recommendations..."):
+                    # Add user message
+                    st.session_state.messages.append({"role": "user", "content": prompt})
+                    with st.chat_message("user"):
+                        st.markdown(prompt)
+
+                    # Generate response
+                    with st.chat_message("assistant"):
+                        with st.spinner("Thinking..."):
+                            client = Groq(api_key=groq_api_key)
+
+                            system_prompt = f"""You are an AI traffic safety analyst assistant.
+You have access to the following traffic violation analysis data:
+
+{context}
+
+Provide helpful, accurate insights based on this data. Be concise and professional.
+If asked about something not in the data, say so clearly."""
+
+                            response = client.chat.completions.create(
+                                model="llama-3.3-70b-versatile",
+                                messages=[
+                                    {"role": "system", "content": system_prompt},
+                                    *[{"role": m["role"], "content": m["content"]}
+                                      for m in st.session_state.messages]
+                                ],
+                                max_tokens=1024,
+                                temperature=0.3
+                            )
+
+                            assistant_response = response.choices[0].message.content
+                            st.markdown(assistant_response)
+                            st.session_state.messages.append({"role": "assistant", "content": assistant_response})
+
+                # Clear chat button
+                if st.button("🗑️ Clear Chat"):
+                    st.session_state.messages = []
+                    st.rerun()
+
+                # Example questions
+                st.divider()
+                st.write("**Example Questions:**")
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.caption("• What is the overall violation rate?")
+                    st.caption("• When do most violations occur?")
+                    st.caption("• Which vehicle types violate most?")
+                with col2:
+                    st.caption("• How to reduce speed violations?")
+                    st.caption("• What does the ML model predict?")
+                    st.caption("• Recommendations for traffic management?")
+
+            except ImportError:
+                st.warning("Groq library not installed. Install with: `pip install groq`")
+            except Exception as e:
+                st.error(f"Error: {e}")
+        else:
+            st.warning("""
+            **API Key Required**
+
+            To enable AI Chat, add your Groq API key:
+
+            **For Streamlit Cloud:**
+            1. Go to App Settings → Secrets
+            2. Add: `GROQ_API_KEY = "your_key_here"`
+
+            **Get free API key:** https://console.groq.com
+            """)
+
+    # ==========================================================================
+    # TAB 6: EXPORT
+    # ==========================================================================
+    with tab6:
         st.subheader("Download Figures & Reports")
 
         col1, col2 = st.columns(2)
