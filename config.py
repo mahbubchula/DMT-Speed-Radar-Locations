@@ -54,7 +54,12 @@ RAW_DATA_FOLDERS = [
 # =============================================================================
 
 # Groq API Configuration (Free LLM API)
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")  # Set via environment variable
+# Try to load from Streamlit secrets first (for cloud deployment), then .env
+try:
+    import streamlit as st
+    GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", os.environ.get("GROQ_API_KEY", ""))
+except:
+    GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 GROQ_MODEL = "llama-3.3-70b-versatile"  # Free tier model (updated)
 GROQ_RATE_LIMIT = 30  # requests per minute
 GROQ_MAX_TOKENS = 4096
