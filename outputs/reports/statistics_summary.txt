@@ -1,0 +1,32 @@
+Traffic Violation Analysis - Statistical Summary
+==================================================
+
+Data Statistics:
+- Total Records: 5,968,227
+- Total Violations: 5,909,604
+- Violation Rate: 99.02%
+- Average Speed: 96.87 km/h
+- Max Speed: 199.68 km/h
+- Unique Locations: 14
+- Date Range: 2021-02-14 to 2021-11-27
+
+Cleaning Statistics:
+- Original rows: 5,986,249
+- Cleaned rows: 5,968,227
+- Rows removed: 18,022 (0.30%)
+- Invalid timestamps: 0
+- Speed outliers removed: 1,466
+- Invalid vehicle classes: 942
+- Duplicates removed: 15,614
+
+Model Performance (Best - Random Forest):
+- Accuracy: 100.00%
+- Precision: 100.00%
+- Recall: 100.00%
+- F1 Score: 100.00%
+- ROC AUC: 100.00%
+
+Notes:
+- Speed limit set at 60 km/h (Thai urban road standard)
+- High violation rate indicates most vehicles exceed speed limit
+- Data collected from DMT speed radar sensors

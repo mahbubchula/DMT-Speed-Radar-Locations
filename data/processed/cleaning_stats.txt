@@ -1,0 +1,10 @@
+Data Cleaning Statistics
+========================================
+original_rows: 5986249
+cleaned_rows: 5968227
+invalid_timestamps: 0
+speed_outliers: 1466
+invalid_classes: 942
+duplicates: 15614
+total_removed: 18022
+removal_percentage: 0.3010566383055566

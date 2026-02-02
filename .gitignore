@@ -1,0 +1,96 @@
+# ========================================
+# SENSITIVE DATA - NEVER COMMIT
+# ========================================
+.env
+.env.local
+.env.*.local
+*.key
+*credentials*
+*secret*
+
+# ========================================
+# LARGE DATA FILES
+# ========================================
+# Processed data (too large for GitHub)
+data/processed/*.csv
+data/processed/*.parquet
+
+# Raw data (exclude large CSVs but keep report CSVs)
+data/**/*.csv
+!outputs/reports/*.csv
+
+# Models (large binary files - use Git LFS or exclude)
+models/*.joblib
+models/*.pkl
+models/*.h5
+
+# ========================================
+# PYTHON
+# ========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+ENV/
+env/
+.venv/
+
+# ========================================
+# IDE / EDITOR
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# ========================================
+# OS
+# ========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ========================================
+# JUPYTER
+# ========================================
+.ipynb_checkpoints/
+*.ipynb
+
+# ========================================
+# LOGS
+# ========================================
+outputs/logs/*.log
+*.log
+
+# ========================================
+# TEMP FILES
+# ========================================
+*.tmp
+*.temp
+*.bak
