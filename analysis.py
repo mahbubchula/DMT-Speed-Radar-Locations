@@ -4,7 +4,13 @@ Traffic Vision Analysis Pipeline
 Complete ML + XAI + LLM pipeline for traffic speed violation analysis.
 Designed for Q1 journal publication quality research.
 
-Author: Traffic Vision Research Team
+Author: Mahbub Hassan
+        Graduate Student & Non-ASEAN Scholar
+        Department of Civil Engineering, Faculty of Engineering
+        Chulalongkorn University, Bangkok, Thailand
+        Email: 6870376421@student.chula.ac.th
+        GitHub: https://github.com/mahbubchula
+
 Version: 1.0.0
 """
 

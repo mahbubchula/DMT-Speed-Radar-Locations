@@ -4,7 +4,13 @@ Traffic Vision System Configuration
 Central configuration file for all settings, paths, and parameters.
 Designed for Q1 journal publication quality analysis.
 
-Author: Traffic Vision Research Team
+Author: Mahbub Hassan
+        Graduate Student & Non-ASEAN Scholar
+        Department of Civil Engineering, Faculty of Engineering
+        Chulalongkorn University, Bangkok, Thailand
+        Email: 6870376421@student.chula.ac.th
+        GitHub: https://github.com/mahbubchula
+
 Version: 1.0.0
 """
 

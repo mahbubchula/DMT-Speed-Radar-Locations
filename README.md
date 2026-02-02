@@ -2,6 +2,15 @@
 
 A comprehensive traffic speed violation analysis system using Machine Learning and Explainable AI (XAI), designed for Q1 journal publication research.
 
+## Author
+
+**Mahbub Hassan**
+Graduate Student & Non-ASEAN Scholar
+Department of Civil Engineering, Faculty of Engineering
+Chulalongkorn University, Bangkok, Thailand
+Email: 6870376421@student.chula.ac.th
+GitHub: [@mahbubchula](https://github.com/mahbubchula)
+
 ## Overview
 
 This system analyzes DMT (Department of Motor Transport) speed radar data from Bangkok, Thailand to:
@@ -152,12 +161,13 @@ CMD ["streamlit", "run", "app.py", "--server.port=8501"]
 ## Citation
 
 If you use this work in your research, please cite:
-```
-@article{traffic_vision_2024,
-  title={Traffic Speed Violation Analysis using Machine Learning and Explainable AI},
-  author={Your Name},
-  journal={Journal Name},
-  year={2024}
+```bibtex
+@article{hassan2024traffic,
+  title={Traffic Speed Violation Analysis using Machine Learning and Explainable AI: A Case Study of Bangkok Urban Roads},
+  author={Hassan, Mahbub},
+  journal={},
+  year={2024},
+  institution={Chulalongkorn University}
 }
 ```
 
@@ -167,6 +177,13 @@ MIT License - See LICENSE file for details.
 
 ## Acknowledgments
 
-- Chulalongkorn University Engineering Department
+- Department of Civil Engineering, Faculty of Engineering, Chulalongkorn University
+- Non-ASEAN Scholarship Program
 - Department of Motor Transport (DMT), Thailand
-- Groq for LLM API access
+- Groq for free LLM API access
+
+## Contact
+
+For questions or collaboration:
+- **Email**: 6870376421@student.chula.ac.th
+- **GitHub**: https://github.com/mahbubchula
